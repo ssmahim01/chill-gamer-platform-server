@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 const express = require("express");
 const cors = require("cors");
@@ -27,9 +27,17 @@ async function run() {
     await client.connect();
 
     const reviewCollection = client.db("reviewsDB").collection("reviews");
+    const watchListCollection = client.db("watchListsDB").collection("watchLists");
 
     app.get("/reviews", async(req, res) => {
       const result = await reviewCollection.find().toArray();
+      res.send(result);
+    });
+
+    app.get("/reviews/:id", async(req, res) => {
+      const id = req.params.id;
+      const newId = {_id: new ObjectId(id)};
+      const result = await reviewCollection.findOne(newId);
       res.send(result);
     });
 
