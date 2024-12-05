@@ -56,6 +56,37 @@ async function run() {
       res.send(result);
     });
 
+    app.patch("/reviews/:id", async(req, res) => {
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const updateInfo = req.body;
+
+      const reviewUpdate = {
+        $set: {
+          gameCover: updateInfo.gameCover,
+          gameTitle: updateInfo.gameTitle,
+          reviewDescription: updateInfo.reviewDescription,
+          rating: updateInfo.rating,
+          publishingYear: updateInfo.publishingYear,
+          genres: updateInfo.genres,
+          email: updateInfo.email,
+          name: updateInfo.name,
+          photo: updateInfo.photo,
+        }
+      };
+
+      const updateResult = await reviewCollection.updateOne(filter, reviewUpdate);
+
+      res.send(updateResult);
+    });
+
+    app.delete("/reviews/:id", async(req, res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const deleteResult = await reviewCollection.deleteOne(query);
+      res.send(deleteResult);
+    });
+
     // Database of WatchList
 
     app.get("/watchLists", async(req, res) => {
