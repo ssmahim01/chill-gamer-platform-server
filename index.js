@@ -29,6 +29,8 @@ async function run() {
     const reviewCollection = client.db("reviewsDB").collection("reviews");
     const watchListCollection = client.db("watchListsDB").collection("watchLists");
 
+    // Database of Reviews
+
     app.get("/reviews", async(req, res) => {
       const result = await reviewCollection.find().toArray();
       res.send(result);
@@ -44,6 +46,19 @@ async function run() {
     app.post("/reviews", async(req, res) => {
       const addReview = req.body;
       const result = await reviewCollection.insertOne(addReview);
+      res.send(result);
+    });
+
+    // Database of WatchList
+
+    app.get("/watchLists", async(req, res) => {
+      const result = await watchListCollection.find().toArray();
+      res.send(result);
+    });
+
+    app.post("/watchLists", async(req, res) => {
+      const addWatchList = req.body;
+      const result = await watchListCollection.insertOne(addWatchList);
       res.send(result);
     });
 
