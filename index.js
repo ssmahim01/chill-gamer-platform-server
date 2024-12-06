@@ -90,8 +90,8 @@ async function run() {
     // Database of WatchList
 
     app.get("/watchLists", async(req, res) => {
-      const {userEmail} = req.query;
-      const watchListFilter = userEmail ? {userEmail} : {};
+      const {email} = req.query;
+      const watchListFilter = email ? {userEmail:email} : {};
       const result = await watchListCollection.find(watchListFilter).toArray();
       res.send(result);
     });
