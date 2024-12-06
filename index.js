@@ -90,14 +90,30 @@ async function run() {
     // Database of WatchList
 
     app.get("/watchLists", async(req, res) => {
-      const result = await watchListCollection.find().toArray();
+      const {userEmail} = req.query;
+      const watchListFilter = userEmail ? {userEmail} : {};
+      const result = await watchListCollection.find(watchListFilter).toArray();
       res.send(result);
+    });
+
+    app.get("/watchLists/:id", async(req, res) => {
+      const id = req.params.id;
+      const watchListId = {_id: new ObjectId(id)};
+      const findResult = await watchListCollection.findOne(watchListId);
+      res.send(findResult);
     });
 
     app.post("/watchLists", async(req, res) => {
       const addWatchList = req.body;
       const result = await watchListCollection.insertOne(addWatchList);
       res.send(result);
+    });
+
+    app.delete("/watchLists/:id", async(req, res) => {
+      const id = req.params.id;
+      const watchListQuery = {_id: new ObjectId(id)};
+      const deleteResult = await watchListCollection.deleteOne(watchListQuery);
+      res.send(deleteResult);
     });
 
     // Send a ping to confirm a successful connection
