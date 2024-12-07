@@ -32,9 +32,11 @@ async function run() {
     // Database of Reviews
 
     app.get("/reviews", async(req, res) => {
-      const {email, sortBy} = req.query;
+      const {email, sortBy, genres} = req.query;
       // console.log(sortBy);
       const filter = email ? {email} : {};
+      const genresFilter = genres ? {genres} : {};
+
       let sortedItems = {};
       
       if(sortBy == "rating"){
@@ -46,8 +48,13 @@ async function run() {
       };
 
       // console.log(sortedItems);
-      const result = await reviewCollection.find(filter).sort(sortedItems).toArray();
+      const result = await reviewCollection.find(filter || genresFilter).sort(sortedItems).toArray();
       res.send(result);
+    });
+
+    app.get("/genres", async(req, res) => {
+      const genresResult = await reviewCollection.find().toArray();
+     res.send(genresResult);
     });
 
     app.get("/reviews/highest-rated", async(req, res) => {
