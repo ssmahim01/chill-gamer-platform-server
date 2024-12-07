@@ -38,7 +38,7 @@ async function run() {
       let sortedItems = {};
       
       if(sortBy == "rating"){
-       sortedItems = {rating:-1};
+       sortedItems = {rating:1};
       };
 
       if(sortBy == "publishingYear"){
