@@ -1,4 +1,6 @@
-# Chill Gamer Server
+# Server Name 
+
+<b>Chill Gamer Server</b>
 
 # Live Link of Website
 
