@@ -32,10 +32,9 @@ async function run() {
     // Database of Reviews
 
     app.get("/reviews", async(req, res) => {
-      const {email, sortBy, genres} = req.query;
+      const {email, sortBy} = req.query;
       // console.log(sortBy);
       const filter = email ? {email} : {};
-      const genresFilter = genres ? {genres} : {};
 
       let sortedItems = {};
       
@@ -48,7 +47,7 @@ async function run() {
       };
 
       // console.log(sortedItems);
-      const result = await reviewCollection.find(filter || genresFilter).sort(sortedItems).toArray();
+      const result = await reviewCollection.find(filter).sort(sortedItems).toArray();
       res.send(result);
     });
 
