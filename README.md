@@ -1,5 +1,9 @@
 # Chill Gamer Server
 
+# Live Link of Website
+
+<b>Link:</b> https://chill-gamer-application.web.app/
+
 # API link of Review collection
 
 <li><b>Link of all reviews:</b> https://chill-gamer-server-two.vercel.app/reviews</li>
