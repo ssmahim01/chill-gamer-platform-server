@@ -2,14 +2,14 @@
 
 <b>Chill Gamer Server</b>
 
+<hr>
+
 # Live Link of Website
 
 <b>Link:</b> https://chill-gamer-application.web.app/
 
-# API link of Review collection
+<hr>
 
-<li><b>Link of all reviews:</b> https://chill-gamer-server-two.vercel.app/reviews</li>
+# Short Description
 
-<li><b>Link of genres:</b> https://chill-gamer-server-two.vercel.app/genres</li>
-
-<li><b>Link of highest rated games:</b> https://chill-gamer-server-two.vercel.app/reviews/highest-rated</li>
+<li>The server is working by <b>Node JS</b> with Express JS, CORS(Cross-Origin Resource Sharing), MongoDB and Dot Env. The server control the entire Chill Gamer Platform.</li>
